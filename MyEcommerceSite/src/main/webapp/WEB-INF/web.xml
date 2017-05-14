@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Add a Category</web-resource-name>
+      <url-pattern>/CatAdd.htm</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>
+         Admin login
+          </description>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-role>
+    <role-name>admin</role-name>
+  </security-role>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/AdminLogin.jsp</form-login-page>
+      <form-error-page>/AdminError.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/spring/root-context.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>appServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewProductandCat</display-name>
+    <servlet-name>ViewProductandCat</servlet-name>
+    <servlet-class>com.neu.edu.controller.ViewProductandCat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProductandCat</servlet-name>
+    <url-pattern>/ViewProductandCat</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewProductAndCat</display-name>
+    <servlet-name>ViewProductAndCat</servlet-name>
+    <servlet-class>com.neu.edu.controller.ViewProductAndCat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewProductAndCat</servlet-name>
+    <url-pattern>/ViewProductAndCat</url-pattern>
+  </servlet-mapping>
+</web-app>
